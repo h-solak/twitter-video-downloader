@@ -13,8 +13,7 @@ section {
 }
 
 .glass-card {
-  height: 30vh;
-  width: 30vw;
+  width: 50%;
   /*Glass*/
   background: rgba(255, 255, 255, 0.2);
   border-radius: 16px;
@@ -41,5 +40,47 @@ section {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+.fade-in-ltr {
+  animation: fadeInFromLeft 0.3s ease-in;
+}
+
+@keyframes fadeInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.fade-in-rtl {
+  animation: fadeInFromRight 0.3s ease-in;
+}
+
+@keyframes fadeInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .glass-card {
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .glass-card {
+    width: 90%;
   }
 }

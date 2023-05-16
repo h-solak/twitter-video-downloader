@@ -4,6 +4,11 @@ import { MdOutlineFileDownload } from "react-icons/md";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 
+interface Meta {
+  sourceUrl: string;
+  title: string;
+}
+
 interface Url {
   quality: number;
   url: string;
@@ -13,6 +18,7 @@ interface Link {
   resourceId: string;
   urls: Url[];
   pictureUrl: string;
+  meta: Meta;
 }
 
 function App() {
@@ -61,9 +67,9 @@ function App() {
     <>
       <Toaster position="top-center" reverseOrder={false} />
       <section className="">
-        <div className="glass-card p-4 d-flex flex-column gap-2">
-          <h5 className="text-white">Twitter Video Downloader</h5>
-          <InputGroup>
+        <div className="glass-card d-flex flex-column gap-2">
+          <h5 className="text-white px-4 pt-4">Twitter Video Downloader</h5>
+          <InputGroup className="px-4 pb-4">
             <Input
               placeholder="Enter an url..."
               value={url}
@@ -81,20 +87,44 @@ function App() {
               )}
             </Button>
           </InputGroup>
-          {links &&
-            links?.map((item) => (
-              <div key={item?.resourceId}>
-                <img
-                  src={item?.pictureUrl}
-                  alt="video"
-                  width={50}
-                  height={50}
-                />
-                {item.urls.map((item2) => (
-                  <a href={item2.url}>{item2?.quality}</a>
-                ))}
-              </div>
-            ))}
+          {links.length > 0 && (
+            <div className="border-top px-4 pt-2 pb-4">
+              {links?.map((item) => (
+                <div
+                  key={item?.resourceId}
+                  className="d-flex flex-column gap-2"
+                >
+                  <h6
+                    className="text-white"
+                    style={{ overflowWrap: "break-word" }}
+                  >
+                    {item?.meta?.title}
+                  </h6>
+                  <div className="d-flex align-items-center gap-4">
+                    <img
+                      src={item?.pictureUrl}
+                      alt="video"
+                      width={100}
+                      height={100}
+                      className="fade-in-ltr"
+                    />
+                    <div className="d-flex flex-column gap-2 fade-in-rtl">
+                      {item.urls.map((item2, index) => (
+                        <a
+                          key={index}
+                          href={item2.url}
+                          className="d-flex align-items-center"
+                        >
+                          <MdOutlineFileDownload className="fs-5" />
+                          <span className="text-white">{item2?.quality}p</span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </>
