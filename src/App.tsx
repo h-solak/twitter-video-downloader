@@ -71,7 +71,7 @@ function App() {
           <h5 className="text-white px-4 pt-4">Twitter Video Downloader</h5>
           <InputGroup className="px-4 pb-4">
             <Input
-              placeholder="Enter an url..."
+              placeholder="Enter a url..."
               value={url}
               onChange={(e) => setUrl(e.target.value)}
             />
