@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { InputGroup, Input, Button } from "reactstrap";
 import { MdOutlineFileDownload } from "react-icons/md";
+import { GrTwitter } from "react-icons/gr";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -68,7 +69,13 @@ function App() {
       <Toaster position="top-center" reverseOrder={false} />
       <section className="">
         <div className="glass-card d-flex flex-column gap-2">
-          <h5 className="text-white px-4 pt-4">Twitter Video Downloader</h5>
+          <div className="d-flex align-items-center gap-2 px-4 pt-4">
+            <GrTwitter
+              className="fs-5 text-primary"
+              style={{ alignSelf: "center" }}
+            />
+            <h5 className="m-0 text-white">Twitter Video Downloader</h5>
+          </div>
           <InputGroup className="px-4 pb-4">
             <Input
               placeholder="Enter a url..."
